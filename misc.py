@@ -2,11 +2,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
-
 def load_data():
     data_url = "https://raw.githubusercontent.com/selva86/datasets/master/BostonHousing.csv"
-    return pd.read_csv(data_url)
-
+    return pd.read_csv(data_url, storage_options={"ssl_verify": False})
 
 def split_data(df):
     X = df.drop("medv", axis=1)
@@ -19,11 +17,9 @@ def split_data(df):
         random_state=42
     )
 
-
 def train_model(model, X_train, y_train):
     model.fit(X_train, y_train)
     return model
-
 
 def evaluate_model(model, X_test, y_test):
     predictions = model.predict(X_test)
