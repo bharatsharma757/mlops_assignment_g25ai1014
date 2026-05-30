@@ -1,10 +1,14 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
+import ssl
 
 def load_data():
+    ssl._create_default_https_context = ssl._create_unverified_context
+
     data_url = "https://raw.githubusercontent.com/selva86/datasets/master/BostonHousing.csv"
-    return pd.read_csv(data_url, storage_options={"ssl_verify": False})
+    return pd.read_csv(data_url)
+
 
 def split_data(df):
     X = df.drop("medv", axis=1)
