@@ -1,3 +1,5 @@
+cat > requirements.txt << EOF
 numpy
 pandas
 scikit-learn
+EOF
